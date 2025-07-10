@@ -21,7 +21,7 @@
   networking.networkmanager.enable = true;
 
   # Time zone
-  time.timeZone = "Australia/Sydney"; # Adjust to your timezone
+  time.timeZone = "Australia/Sydney";
 
   # Locale settings
   i18n.defaultLocale = "en_US.UTF-8";
@@ -36,14 +36,16 @@
         enable = true;
         greeter.enable = true;
       };
-      autoLogin = {
-        enable = true;
-        user = "htpc";
-      };
     };
     
     # Desktop environment (using XFCE for simplicity)
     desktopManager.xfce.enable = true;
+  };
+
+  # Auto-login configuration (moved out of xserver)
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "htpc";
   };
 
   # SSH server configuration
@@ -68,7 +70,6 @@
     description = "Scott";
     extraGroups = [ "wheel" "networkmanager" ];
     openssh.authorizedKeys.keys = [
-      # Replace this with your actual SSH public key
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFA0FHhKHY6qcAMwCx+gOhmLpC8kwq327pw5YJBk3qxF scott@goatherder.net"
     ];
   };
@@ -85,9 +86,6 @@
   # System packages
   environment.systemPackages = with pkgs; [
     brave
-    thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
     vim
     wget
     git
@@ -120,9 +118,9 @@
   };
 
   # Enable hardware acceleration for video playback
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Configure keyboard shortcuts for HTPC user
