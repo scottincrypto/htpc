@@ -111,14 +111,18 @@
     };
   };
 
-  # Enable audio
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # Enable audio using PipeWire (modern audio system)
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
-  # Enable OpenGL for better video playback
+  # Enable hardware acceleration for video playback
   hardware.opengl = {
     enable = true;
-    driSupport = true;
+    driSupport32Bit = true;
   };
 
   # Configure keyboard shortcuts for HTPC user
