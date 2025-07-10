@@ -1,5 +1,5 @@
 # Identify your disk (usually /dev/sda or /dev/nvme0n1)
-`lsblk
+`lsblk`
 
 # For UEFI systems (recommended):
 ```
@@ -16,7 +16,7 @@ sudo mkfs.ext4 -L nixos /dev/sda2
 ```
 
 # Mount root
-`sudo mount /dev/disk/by-label/nixos /mnt
+`sudo mount /dev/disk/by-label/nixos /mnt`
 
 # Create and mount boot
 ```
@@ -25,35 +25,35 @@ sudo mount /dev/disk/by-label/BOOT /mnt/boot
 ```
 
 # Generate hardware configuration
-`sudo nixos-generate-config --root /mnt
+`sudo nixos-generate-config --root /mnt`
 
 # Install git temporarily to clone your config
-`nix-shell -p git
+`nix-shell -p git`
 
 # Clone your configuration repository (replace with your actual repo URL)
-`git clone https://github.com/yourusername/nixos-htpc-config.git /tmp/nixos-config
+`git clone https://github.com/yourusername/nixos-htpc-config.git /tmp/nixos-config`
 
 # Copy your configuration.nix to the target system
-`sudo cp /tmp/nixos-config/configuration.nix /mnt/etc/nixos/configuration.nix
+`sudo cp /tmp/nixos-config/configuration.nix /mnt/etc/nixos/configuration.nix`
 
 # Important: Keep the generated hardware-configuration.nix
 # (It contains your specific hardware settings)
 
 # Install the system
-`sudo nixos-install
+`sudo nixos-install`
 
 # Set root password when prompted
 
 # Reboot
-`sudo reboot
+`sudo reboot`
 
 # After reboot, login as root
 # Set passwords for users
-`passwd scott
-`passwd htpc
+`passwd scott`
+`passwd htpc`
 
 # Switch to scott user
-`su - scott
+`su - scott`
 
 # Add your SSH key to scott's authorized_keys if not done in config
 ```
