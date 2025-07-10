@@ -56,7 +56,7 @@
       PermitRootLogin = "no";
     };
   };
-
+  
   # NFS mount configuration
   fileSystems."/mnt/media" = {
     device = "192.168.1.10:/Volume_1/media";
