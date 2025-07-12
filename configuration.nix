@@ -76,7 +76,7 @@
   
   # NFS mount configuration
   fileSystems."/mnt/media" = {
-    device = "192.168.1.10:/mnt/HD/HD_a2/media";
+    device = "192.168.1.10:/mnt/HD/HD_a2";
     fsType = "nfs";
     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
   };
@@ -195,7 +195,7 @@
     Name=Media Library
     Comment=Network media storage
     Icon=folder-remote
-    URL=/mnt/media
+    URL=/mnt/media/media
     EOF
     
     # Make shortcuts executable and set ownership
