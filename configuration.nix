@@ -23,7 +23,19 @@
 
   # Networking
   networking.hostName = "htpc";
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
+  networking = {
+  interfaces.eno1 = {
+    ipv4.addresses = [{
+      address = "192.168.1.11";
+      prefixLength = 24;  # This is /24 or 255.255.255.0
+    }];
+    useDHCP = false;  # Disable DHCP on this interface
+  };
+  
+  defaultGateway = "192.168.1.1";
+  nameservers = [ "192.168.1.1" ];
+  };
 
   # Time zone
   time.timeZone = "Australia/Sydney";
@@ -64,7 +76,7 @@
   
   # NFS mount configuration
   fileSystems."/mnt/media" = {
-    device = "192.168.1.10:/Volume_1/media";
+    device = "192.168.1.10:/mnt/HD/HD_a2/media";
     fsType = "nfs";
     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
   };
@@ -82,7 +94,7 @@
   users.users.htpc = {
     isNormalUser = true;
     description = "HTPC User";
-    extraGroups = [ "audio" "video" "networkmanager" ];
+    extraGroups = [ "wheel" "audio" "video" "networkmanager" ];
   };
 
   # Enable sudo without password for wheel group (optional, remove if you want password prompts)
