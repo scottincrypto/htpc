@@ -6,14 +6,12 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
+  # Bootloader - USB boot with SSD root
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiInstallAsRemovable = true;  # This makes it more compatible
-  boot.loader.efi.canTouchEfiVariables = false;  # Less EFI variable nonsense
+  boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
   # Swap file configuration
   swapDevices = [{
@@ -175,6 +173,9 @@
       <property name="commands" type="empty">
         <property name="custom" type="empty">
           <property name="&lt;Super&gt;e" type="string" value="thunar"/>
+          <property name="XF86AudioRaiseVolume" type="string" value="pactl set-sink-volume @DEFAULT_SINK@ +5%"/>
+          <property name="XF86AudioLowerVolume" type="string" value="pactl set-sink-volume @DEFAULT_SINK@ -5%"/>
+          <property name="XF86AudioMute" type="string" value="pactl set-sink-mute @DEFAULT_SINK@ toggle"/>
         </property>
       </property>
     </channel>
