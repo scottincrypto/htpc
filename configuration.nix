@@ -6,12 +6,9 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader - USB boot with SSD root
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
+  # Bootloader - systemd boot
+  boot.loader.systemd-boot.enable=true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # Swap file configuration
   swapDevices = [{
@@ -173,9 +170,9 @@
       <property name="commands" type="empty">
         <property name="custom" type="empty">
           <property name="&lt;Super&gt;e" type="string" value="thunar"/>
-          <property name="XF86AudioRaiseVolume" type="string" value="pactl set-sink-volume @DEFAULT_SINK@ +5%"/>
-          <property name="XF86AudioLowerVolume" type="string" value="pactl set-sink-volume @DEFAULT_SINK@ -5%"/>
-          <property name="XF86AudioMute" type="string" value="pactl set-sink-mute @DEFAULT_SINK@ toggle"/>
+          <property name="XF86AudioRaiseVolume" type="string" value="wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"/>
+          <property name="XF86AudioLowerVolume" type="string" value="wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"/>
+          <property name="XF86AudioMute" type="string" value="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"/>
         </property>
       </property>
     </channel>
